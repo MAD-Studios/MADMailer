@@ -13,8 +13,9 @@ Adding MADMailer to your Project
 --------------
 
 To add MADMailer to your projects...
-1) Add the reference to your HTML file
-Example:   <script src="MADMailer/src/js/MADMailer.js" type="text/javascript"></script>
+1) Add the reference to your HTML file, for example:
+
+    <script src="MADMailer/src/js/MADMailer.js" type="text/javascript"></script>
 
 2) On document ready event initialize the MADMailer with your options.
 
