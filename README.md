@@ -57,7 +57,7 @@ To add MADMailer to your projects...
     - i.e.: %my-input-element-id%
     - see example/email-templates/lorem-ipsum.html
     
-    4) To send the mail to an email address enterred into a field, add the data attribute 'data-mail-to="true"' to the element.
+    4) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
     
  
 Demo
