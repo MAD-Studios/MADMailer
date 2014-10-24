@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MADMailer Example</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" 
+    <meta name="title" content="Send Email" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta property="og:title" content="Send Email" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.madstudios.net" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script> 
+    <script src="../MADMailer/src/js/MADMailer.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+	    MADMailer.init({
+	    	//URI of your HTML email template
+	    	//use absolute path here
+	    	mail_template_uri: 'http://dev.madstudios.net/kelsey/projects/Library/MADMailer/example/email-templates/lorem-ipsum.html',
+	    	mail_subject: 'Lorem Ipsum Dolor',
+	    	mail_from: {email:'helpdesk@madstudios.net', name:'MAD Studios Help Desk'},
+	    	mail_to: [],
+	    	mail_cc: [],
+	    	mail_bcc: [
+	    			//{email: 'johndoe@email.com', name:'John Doe' },
+	    			//{email: 'janedoe@email.com', name:'Jane Doe' }
+	    	],
+	    	//selector for element that will 
+	    	//send mail upon click
+	    	button: '#button-madmailer',
+	    	//selector for form element that contains 
+	    	//data to be sent in mail
+	    	form: '#form-contact',
+	    	//selector for an optional
+	    	//activity indicator that will replace
+	    	//the button while send mail is in progress
+	    	activity_indicator: '.activity-indicator',
+	    	//selector for the element that will 
+	    	//show upon email send success
+	    	success_notification: '#notification-success',
+	    	//selector for the element that will 
+	    	//show upon form validation 
+	    	// or email send error
+	    	error_notification: '#notification-error'
+	    });
+    });
+    </script>
+</head>
+
+<body>	
+	<form id="form-contact">
+		<h1>My Contact Form</h1>	
+		<input type="text" class="required" id="input-name" placeholder="Name">
+		<input type="text" class="required" id="input-email" data-mail-to="true" placeholder="Email">
+		<textarea type="text" id="input-comment" placeholder="Question or Comment"></textarea>
+		<div class="button-container">
+			<button type="button" id="button-madmailer">Submit</button>
+			<div class="activity-indicator"><img src="img/activity-indicator.gif"/></div>
+		</div>
+		<div class="notification" id="notification-success">Your Request was Sent!</div>
+		<div class="notification" id="notification-error">
+		<!-- the text  for the error notifcation element you specify will come from the MADMailer  -- it will show any validation errors or errors that may occur during sending of mail-->
+		</div>
+	</form>
+	
+	
+</body>
+
+
+</html>
+    
