@@ -79,11 +79,11 @@ Properties
       	    {email: 'janedoe@email.com', name:'Jane Doe' }
         ]
   	    	
-- button: (String) the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below. 
+- button: (String) the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below during the send mail operation 
     
 - form: (String) the selector for the form (or any element) containing your input elements. 
     
-- activity_indicator:  (String) the selector for any activity indicator you wish to show during the send mail operation
+- activity_indicator:  (String) the selector for any activity indicator element you wish to show during the send mail operation (for example a loader.gif)
     
 - success_notification: (String) the selector for the element that will show upon successful send mail
     
