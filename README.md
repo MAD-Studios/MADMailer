@@ -14,11 +14,13 @@ Adding MADMailer to your Project
 
 To add MADMailer to your projects...
 
-1) Add the reference to your HTML file, for example:
+1) Add the folder MADMailer to your project.
+
+2) Then add the reference to the JS file (within MADMailer/src/js) in your HTML file, for example:
 
     <script src="MADMailer/src/js/MADMailer.js" type="text/javascript"></script>
 
-2) On document ready event initialize the MADMailer with your options.
+3) On document ready event initialize the MADMailer with your options.
 
     $(document).ready(function(){
   	    MADMailer.init({
@@ -53,11 +55,11 @@ To add MADMailer to your projects...
   	    });
     });
     
-    3) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
+    4) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
     - i.e.: %my-input-element-id%
     - see example/email-templates/lorem-ipsum.html
     
-    4) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
+    5) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
     
  
 Demo
