@@ -14,7 +14,7 @@ Adding MADMailer to your Project
 
 To add MADMailer to your projects...
 
-1) Add the folder MADMailer to your project.
+1) Add the folder MADMailer to the root (or anywhere else you choose) of your project.
 
 2) Then add the reference to the JS file (within MADMailer/src/js) in your HTML file, for example:
 
