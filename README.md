@@ -24,33 +24,19 @@ To add MADMailer to your projects...
 
     $(document).ready(function(){
   	    MADMailer.init({
-  	    	//URI of your HTML email template
-  	    	//use absolute path here
   	    	mail_template_uri: 'http://www.yourdomain.com/email-templates/some-email-template.html',
   	    	mail_subject: 'Lorem Ipsum Dolor',
   	    	mail_from: {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'},
   	    	mail_to: [],
   	    	mail_cc: [],
   	    	mail_bcc: [
-  	    			//{email: 'johndoe@email.com', name:'John Doe' },
-  	    			//{email: 'janedoe@email.com', name:'Jane Doe' }
+  	    			{email: 'johndoe@email.com', name:'John Doe' },
+  	    			{email: 'janedoe@email.com', name:'Jane Doe' }
   	    	],
-  	    	//selector for element that will 
-  	    	//send mail upon click
   	    	button: '#button-madmailer',
-  	    	//selector for form element that contains 
-  	    	//data to be sent in mail
   	    	form: '#form-contact',
-  	    	//selector for an optional
-  	    	//activity indicator that will replace
-  	    	//the button while send mail is in progress
   	    	activity_indicator: '.activity-indicator',
-  	    	//selector for the element that will 
-  	    	//show upon email send success
   	    	success_notification: '#notification-success',
-  	    	//selector for the element that will 
-  	    	//show upon form validation 
-  	    	// or email send error
   	    	error_notification: '#notification-error'
   	    });
     });
