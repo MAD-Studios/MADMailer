@@ -40,6 +40,12 @@ To add MADMailer to your projects...
   	    	error_notification: '#notification-error'
   	    });
     });
+
+4) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
+    - i.e.: %my-input-element-id%
+    - see example/email-templates/lorem-ipsum.html
+    
+5) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
     
 
 Properties
@@ -78,13 +84,6 @@ ex: mail_bcc: [
 - success_notification: (String) the selector for the element that will show upon successful send mail
     
 - error_notification: (String) the selector for the element that will show upon error; should be empty div; any content will be replaced with error notification
-    
-    
-    4) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
-    - i.e.: %my-input-element-id%
-    - see example/email-templates/lorem-ipsum.html
-    
-    5) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
  
 Demo
 --------------
