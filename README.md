@@ -56,7 +56,7 @@ Properties
     
 - mail_from:    (object) the email address and name of the who the email is coming from
 
-        mail_from: {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'},
+        mail_from: {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'}
     
 - mail_to: (array of objects) the email address(es) and name(s) of the who the email is to
 
