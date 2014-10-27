@@ -41,7 +41,7 @@ To add MADMailer to your projects...
   	    });
     });
     
-    
+
 Properties
 --------------
 - mail_template_uri:    (String) the absolute path to your email template
@@ -85,7 +85,6 @@ ex: mail_bcc: [
     - see example/email-templates/lorem-ipsum.html
     
     5) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
-
  
 Demo
 --------------
