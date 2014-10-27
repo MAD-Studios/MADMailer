@@ -55,25 +55,25 @@ Properties
 - mail_subject:     (String) the subject of your email
     
 - mail_from:    (object) the email address and name of the who the email is coming from
-    {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'},
+        {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'},
     
 - mail_to: (array of objects) the email address(es) and name(s) of the who the email is to
-    mail_to: [
-      	   //{email: 'johndoe@email.com', name:'John Doe' },
-      	   //{email: 'janedoe@email.com', name:'Jane Doe' }
-    ]
+        mail_to: [
+      	   {email: 'johndoe@email.com', name:'John Doe' },
+      	   {email: 'janedoe@email.com', name:'Jane Doe' }
+        ]
   	    	
 - mail_cc: (array of objects) the email address(es) and name(s) of people to be cc'd  **optional**
-    mail_cc: [
+        mail_cc: [
       	    {email: 'johndoe@email.com', name:'John Doe' },
-      	    email: 'janedoe@email.com', name:'Jane Doe' }
-    ]
+      	    {email: 'janedoe@email.com', name:'Jane Doe' }
+        ]
 
 - mail_bcc: (array of objects) the email address(es) and name(s) of people to be bcc'd  **optional**
-    mail_bcc: [
-      	    //{email: 'johndoe@email.com', name:'John Doe' },
-      	    //{email: 'janedoe@email.com', name:'Jane Doe' }
-    ]
+        mail_bcc: [
+      	    {email: 'johndoe@email.com', name:'John Doe' },
+      	    {email: 'janedoe@email.com', name:'Jane Doe' }
+        ]
   	    	
 - button: (String) the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below. 
     
