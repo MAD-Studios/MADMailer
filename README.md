@@ -83,15 +83,15 @@ ex: mail_bcc: [
   	    //{email: 'janedoe@email.com', name:'Jane Doe' }
 ]
   	    	
-- button: the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below. 
+- button: (String) the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below. 
     
-- form: the selector for the form (or any element) containing your input elements. 
+- form: (String) the selector for the form (or any element) containing your input elements. 
     
-- activity_indicator:  the selector for any activity indicator you wish to show during the send mail operation
+- activity_indicator:  (String) the selector for any activity indicator you wish to show during the send mail operation
     
-- success_notification: the selector for the element that will show upon successful send mail
+- success_notification: (String) the selector for the element that will show upon successful send mail
     
-- error_notification: the selector for the element that will show upon error; should be empty div; any content will be replaced with error notification
+- error_notification: (String) the selector for the element that will show upon error; should be empty div; any content will be replaced with error notification
     
     
     4) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
