@@ -55,12 +55,51 @@ To add MADMailer to your projects...
   	    });
     });
     
+    
+    Properties
+    --------------
+    - mail_template_uri:    (String) the absolute path to your email template
+    
+    - mail_subject:     (String) the subject of your email
+    
+    - mail_from:    (object) the email address and name of the who the email is coming from
+    ex: {email:'no-reply@yourdomain.com', name:'Lorem Ipsum'},
+    
+    - mail_to: (array of objects) the email address(es) and name(s) of the who the email is to
+    ex: mail_to: [
+  	    			//{email: 'johndoe@email.com', name:'John Doe' },
+  	    			//{email: 'janedoe@email.com', name:'Jane Doe' }
+  	    	]
+  	    	
+  	- mail_cc: (array of objects) the email address(es) and name(s) of people to be cc'd  **optional**
+    ex: mail_cc: [
+  	    			//{email: 'johndoe@email.com', name:'John Doe' },
+  	    			//{email: 'janedoe@email.com', name:'Jane Doe' }
+  	    	]
+
+    - mail_bcc: (array of objects) the email address(es) and name(s) of people to be bcc'd  **optional**
+    ex: mail_bcc: [
+  	    			//{email: 'johndoe@email.com', name:'John Doe' },
+  	    			//{email: 'janedoe@email.com', name:'Jane Doe' }
+  	    	]
+  	    	
+    - button: the selector for the button that will initiate the send mail action; it will be replaced by any element specified in activity_indicator below. 
+    
+    - form: the selector for the form (or any element) containing your input elements. 
+    
+    - activity_indicator:  the selector for any activity indicator you wish to show during the send mail operation
+    
+    - success_notification: the selector for the element that will show upon successful send mail
+    
+    - error_notification: the selector for the element that will show upon error; should be empty div; any content will be replaced with error notification
+    
+    
     4) Create your Email Template.  To add data enterred into your form fields into your email when sent, place the field id within two "%" symbols inside your template.
     - i.e.: %my-input-element-id%
     - see example/email-templates/lorem-ipsum.html
     
     5) To send the mail to an email address entered into a field, add the data attribute 'data-mail-to="true"' to the element.
-    
+
  
 Demo
 --------------
