@@ -169,7 +169,7 @@ MADMailer = {
 	// showSuccessNotification
 	//--------------------------------------
 	showSuccessNotification: function(){
-		var to_scrollTop;
+		var to_scrollTop = 0;
 		//show & focus in on the 
 		//element of success selector
 		if(this.success_notification_el){
@@ -190,14 +190,14 @@ MADMailer = {
 		var window_scroll_top = $(window).scrollTop();
 		if(window_scroll_top > offset.top ){
 			//set the scrolltop to offset.top + PADDING
-			//$(window).scrollTop(offset.top + this.PADDING);
 			to_scrollTop = offset.top - this.PADDING;
+            $(window).scrollTop(to_scrollTop);
 		}
 		else if( (window_scroll_top+$(window).height()) < offset.top ){
 			//set the scrolltop to window.height() - offset.top - PADDING
 			to_scrollTop = offset.top - $(window).height() + this.PADDING;
+			$(window).scrollTop(to_scrollTop);
 		}
-		$(window).scrollTop(to_scrollTop);
 	},
 	//--------------------------------------
 	// hideSuccessNotification
@@ -244,18 +244,9 @@ MADMailer = {
 		var offset = this.error_notification_el.offset();
 		//get the window scroll position
 		var window_scroll_top = $(window).scrollTop();
-		console.log("window_scroll_top = "+ window_scroll_top);
-		
-		console.log("offset.top = "+ offset.top);
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//need to test to see if this is working
-		//by giving the form extra margin top
-		//!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		if(window_scroll_top > offset.top ){
 			//set the scrolltop to offset.top + PADDING
-			//$(window).scrollTop(offset.top + this.PADDING);
 			to_scrollTop = offset.top - this.PADDING;
 		}
 		else if( (window_scroll_top+$(window).height()) < offset.top ){
