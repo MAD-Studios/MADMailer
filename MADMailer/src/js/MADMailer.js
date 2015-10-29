@@ -47,24 +47,11 @@ MADMailer = {
 		if(this.button_el){
 			//add the click handler
 			$(this.mail_obj.button).click(function(){
-				self.showActivityIndicator();
+			    if(self.activity_indicator_el) self.showActivityIndicator();
 				self.sendMail();
 				return false;
 			});
 		}
-		else{
-			//self.showErrorNotification(self.ERROR_NOTIFICATIONS.BTN_FORM_SELECTOR);
-		}
-		
-		/*if(this.activity_indicator_el && this.button_el){
-			//position the activity indicator so 
-			//that it is cnetered with the button
-			//get the position of the button
-			var offset_button = this.button_el.offset();
-			var to_offset_top = offset_button.top() + (offset_button.outerHeight()/2);
-			var to_offset_left = offset_button.left() + (offset_button.outerWidth()/2);
-			//this.activity_indicator_el
-		}*/
 		
 		//for(script in scripts){
 		$('script').each(function(){
@@ -86,6 +73,10 @@ MADMailer = {
 	sendMail: function(){
 		var self = this;
 		var html;
+		var to_obj;
+        var from_obj;
+        var reg_exp;
+        var i;
 		this.clearErrors();
 		this.hideSuccessNotification();
 		//mail_obj format
@@ -100,7 +91,6 @@ MADMailer = {
 		if(this.mail_obj.form && $(this.mail_obj.form)){
 	
 			var is_valid = this.validate(this.mail_obj.form);
-			console.log("is_valid = " + is_valid);
 			
 			if(is_valid == true){
 				//the params object 
@@ -120,18 +110,68 @@ MADMailer = {
 				 	//the data-mail-to attribute
 				 	//set to true set the to param 'to'
 				 	//to its value
-				 	if($(this).data('mail-to') == true) params.to = [ {email:$(this).val().trim(), name: ""} ];
-				 	
+				 	if($(this).data('mail-to') == true){
+				 	   if(!to_obj) to_obj = {};
+				 	   to_obj.email = $(this).val().trim();
+				 	} 
+				 	if($(this).data('mail-to-name') == true) {
+				 	   if(!to_obj) to_obj = {};
+				 	   to_obj.email = $(this).val().trim();
+                    }
+                    if($(this).data('mail-from') == true){
+                       if(!from_obj) from_obj = {};
+				 	   from_obj.email = $(this).val().trim(); 
+                    } 
+                    if($(this).data('mail-from-name') == true){
+                        if(!from_obj) from_obj = {};
+				 	   from_obj.email = $(this).val().trim();
+                    }
+                    
 					//for each input
 					//addd the val to an object
 					params[$(this).attr("id")] = $(this).val().trim();
+					
+					//traverse each item
+					//of this.mail_obj
+					//if any contains the id
+					//of this input within %%
+					//then replace it with the value 
+					//of this input
+					reg_exp = new RegExp("%" + $(this).attr("id") + "%","g");
+                    params.subject = params.subject.replace(reg_exp, $(this).val().trim());
+					for(i=0;i<params.to.length;i++){
+    					if(params.to[i].email) params.to[i].email = params.to[i].email.replace(reg_exp, $(this).val().trim());
+                        if(params.to[i].name) params.to[i].name = params.to[i].name.replace(reg_exp, $(this).val().trim());
+					}
+					for(i=0;i<params.cc.length;i++){
+    					if(params.cc[i].email) params.cc[i].email = params.cc[i].email.replace(reg_exp, $(this).val().trim());
+                        if(params.cc[i].name) params.cc[i].name = params.cc[i].name.replace(reg_exp, $(this).val().trim());
+					}
+					for(i=0;i<params.bcc.length;i++){
+    					if(params.bcc[i].email) params.bcc[i].email = params.bcc[i].email.replace(reg_exp, $(this).val().trim());
+                        if(params.bcc[i].name) params.bcc[i].name = params.bcc[i].name.replace(reg_exp, $(this).val().trim());
+					}
+                    if(params.from.email) params.from.email = params.from.email.replace(reg_exp, $(this).val().trim());
+                    if(params.from.name) params.from.name = params.from.name.replace(reg_exp, $(this).val().trim());
 				});
 				$(this.mail_obj.form + ' textarea').each(function(){
 					html = $(this).val();
 					html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
 					params[$(this).attr("id")] = html;
 				});
-				
+
+				//if we have a to_obj
+				//and make sur eit has an email 
+				//value aassociated with it
+				if(to_obj && to_obj.email) {
+    				if(!to_obj.name) to_obj.name = "";
+                    params.to = [ to_obj ];
+				}
+				if(from_obj && from_obj.email) {
+				    if(!from_obj.name) from_obj.name = "";
+                    params.from = from_obj;
+				}
+
 				//ajax call
 				$.ajax({
 					type: 'POST',
@@ -140,7 +180,7 @@ MADMailer = {
 					dataType: 'json',
 					success: function(data){	
 						if(data.success){
-							self.hideActivityIndicator();
+                            self.hideActivityIndicator();
 							self.showSuccessNotification();
 							self.clearForm();
 						}
@@ -149,7 +189,6 @@ MADMailer = {
 						}
 					},
 					error: function(data){
-						console.log("error " + JSON.stringify(data));	
 						self.showErrorNotification(self.ERROR_NOTIFICATIONS.DEFAULT);
 					}
 				});
@@ -169,7 +208,6 @@ MADMailer = {
 	// showSuccessNotification
 	//--------------------------------------
 	showSuccessNotification: function(){
-		var to_scrollTop = 0;
 		//show & focus in on the 
 		//element of success selector
 		if(this.success_notification_el){
@@ -188,16 +226,16 @@ MADMailer = {
 		var offset = this.success_notification_el.offset();
 		//get the window scroll position
 		var window_scroll_top = $(window).scrollTop();
+        var to_scrollTop = window_scroll_top;
+
 		if(window_scroll_top > offset.top ){
 			//set the scrolltop to offset.top + PADDING
 			to_scrollTop = offset.top - this.PADDING;
-            $(window).scrollTop(to_scrollTop);
 		}
 		else if( (window_scroll_top+$(window).height()) < offset.top ){
-			//set the scrolltop to window.height() - offset.top - PADDING
 			to_scrollTop = offset.top - $(window).height() + this.PADDING;
-			$(window).scrollTop(to_scrollTop);
 		}
+        $(window).scrollTop(to_scrollTop);
 	},
 	//--------------------------------------
 	// hideSuccessNotification
@@ -244,6 +282,7 @@ MADMailer = {
 		var offset = this.error_notification_el.offset();
 		//get the window scroll position
 		var window_scroll_top = $(window).scrollTop();
+		var to_scrollTop = window_scroll_top;
 		
 		if(window_scroll_top > offset.top ){
 			//set the scrolltop to offset.top + PADDING
@@ -333,14 +372,14 @@ MADMailer = {
 		if(this.activity_indicator_el){
 			delay = true;
 			this.hideActivityIndicator();
-		}
-		if(delay){
-			this.showButtonTimeout = setTimeout(function(){
-				self.completeShowButton();
-			}, 500);
-			
-		}
-		else this.completeShowButton();		
+		
+    		if(delay){
+    			this.showButtonTimeout = setTimeout(function(){
+    				self.completeShowButton();
+    			}, 500);
+    		}
+    		else this.completeShowButton();	
+		}	
 	},
 	//--------------------------------------
 	// completeShowButton
@@ -408,7 +447,7 @@ MADMailer = {
 		var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		var is_valid = true;
 		$(formSelector + ' :input').each(function(index){
-			if ($(this).hasClass('required'))
+			if ( $(this).hasClass('required') || $(this).attr('required') )
 			{
 				if ($.trim($(this).val()) == '')
 				{
@@ -428,5 +467,4 @@ MADMailer = {
 		});
 		return is_valid;
 	}
-
 };

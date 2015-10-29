@@ -43,7 +43,7 @@ $subject = $_POST['subject'];
 
 //traverse post vars
 foreach ( $_POST as $key => $value ){
-	//if the  value of teh post var 
+	//if the  value of the post var 
 	//matches a var in the email template
 	//replace it
 	if($key != 'template_uri' && $key != 'from' && $key != 'to' && $key != 'cc' && $key != 'bcc' && $key != 'subject'){ 

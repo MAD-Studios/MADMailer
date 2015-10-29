@@ -23,10 +23,11 @@
 	    MADMailer.init({
 	    	//URI of your HTML email template
 	    	//use absolute path here
-	    	mail_template_uri: 'http://dev.madstudios.net/kelsey/projects/Library/MADMailer/example/email-templates/lorem-ipsum.html',
+	    	mail_template_uri: 'http://dev.madstudios.net/kelsey/projects/MADMailer/example/email-templates/lorem-ipsum.html',
 	    	mail_subject: 'Lorem Ipsum Dolor',
-	    	mail_from: {email:'helpdesk@madstudios.net', name:'MAD Studios Help Desk'},
-	    	mail_to: [],
+	    	//mail_from: {email:'helpdesk@madstudios.net', name:'MAD Studios Help Desk'},
+	    	mail_from: {email:'%input-from-email%', name:'%input-from-name%'},
+	    	mail_to: [{email:'%input-to-email%', name:'%input-to-name%'}],
 	    	mail_cc: [],
 	    	mail_bcc: [
 	    			//{email: 'johndoe@email.com', name:'John Doe' },
@@ -57,8 +58,10 @@
 <body>	
 	<form id="form-contact">
 		<h1>My Contact Form</h1>	
-		<input type="text" class="required" id="input-name" placeholder="Name">
-		<input type="text" class="required" id="input-email" data-mail-to="true" placeholder="Email">
+		<input type="text" required id="input-to-name" placeholder="To Name">
+        <input type="text" required id="input-to-email" placeholder="To Email">
+        <input type="text" required id="input-from-name" placeholder="From">
+		<input type="text" required id="input-from-email" placeholder="From Email">
 		<textarea type="text" id="input-comment" placeholder="Question or Comment"></textarea>
 		<div class="button-container">
 			<button type="button" id="button-madmailer">Submit</button>
@@ -66,7 +69,7 @@
 		</div>
 		<div class="notification" id="notification-success">Your Request was Sent!</div>
 		<div class="notification" id="notification-error">
-		<!-- the text  for the error notifcation element you specify will come from the MADMailer  -- it will show any validation errors or errors that may occur during sending of mail-->
+		<!-- the text  for the error notifcation element you specify will come from the MADMailer -- it will show any validation errors or errors that may occur during sending of mail-->
 		</div>
 	</form>
 	
